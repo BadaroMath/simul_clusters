@@ -241,3 +241,112 @@ operator <- function(BarOmega, K, p, n, file){
   print("done:")
   print(c(n, K, p, BarOmega))  
 }
+
+
+
+# 1000 <= n <= 500000, step = 100  -- Número de observações
+# 5 <= K <= 10000, step = 5 -- Número de componente
+# 1 <= p <= 10, step = 1 -- Número de dimensões
+# 0 <= BarOmega <= 0.8, step = 0.01 -- Sobreposição média.
+
+################ General (individual)  ##############
+
+
+for (BarOmega in seq(0, 0.6, 0.01)){
+  operator(BarOmega, 3, 5, 1000, "BarOmega")
+}
+
+for (K in seq(2, 12, 1)){
+  operator(0, K, 5, 1000, "Clusters")
+}
+
+for (n in seq(100, 10000, 100)){
+  operator(0, 3, 5, n, "N")
+}
+
+for (p in seq(60, 200, 10)){
+  operator(0, 3, p, 1000, "Components")
+}
+
+
+
+
+################ General (individual) BarOmega = 0.05  ##############
+
+for (K in seq(2, 13, 1)){
+  operator(0.05, K, 5, 1000, "Clusters_Omega5")
+}
+
+for (n in seq(1000, 500000, 1000)){
+  operator(0.05, 3, 5, n, "N_Omega5")
+}
+
+for (p in seq(0, 100, 1)){
+  operator(0.05, 3, p, 1000, "Components_Omega5")
+}
+
+################ General (individual) BarOmega = 0.1  ##############
+
+for (K in seq(2, 30, 1)){
+  operator(0.1, K, 5, 1000, "Clusters_Omega10")
+}
+
+for (n in seq(1000, 500000, 1000)){
+  operator(0.1, 3, 5, n, "N_Omega10")
+}
+
+for (p in seq(0, 100, 1)){
+  operator(0.1, 3, p, 1000, "Components_Omega10")
+}
+
+
+################ General (individual) BarOmega = 0.15  ##############
+
+for (K in seq(2, 30, 1)){
+  operator(0.15, K, 5, 1000, "Clusters_Omega15")
+}
+
+for (n in seq(1000, 10000, 1000)){
+  operator(0.15, 3, 5, n, "N_Omega15")
+}
+
+for (p in c(3, 5, 8, 10, 15, 30, 50)){
+  operator(0.15, 3, p, 1000, "Components_Omega15")
+}
+
+
+################ General (individual) BarOmega = 0.20  ##############
+
+for (K in seq(2, 30, 1)){
+  operator(0.20, K, 5, 1000, "Clusters_Omega20")
+}
+
+for (n in seq(1000, 500000, 1000)){
+  operator(0.20, 3, 5, n, "N_Omega20")
+}
+
+for (p in c(3, 5, 8, 10, 15, 30, 50)){
+  operator(0.20, 3, p, 1000, "Components_Omega20")
+}
+
+
+
+################ Cluster & Components  ##############
+
+
+for (K in c(3, 5, 7, 10)){
+  for (p in c(3, 5, 8, 10, 15, 30, 50)){
+    operator(0, K, p, 1000, "Clusters_Comp")
+  }
+}
+
+
+
+################ Obs & Components  ##############
+
+
+for (n in c(50, 100, 500, 1000, 3000, 5000)){
+  for (p in c(3, 5, 8, 10, 15, 30, 50)){
+    operator(0, K, p, 1000, "N_Comp")
+  }
+}
